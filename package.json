@@ -2,7 +2,7 @@
   "name": "Mydapp",
   "private": true,
   "version": "1.0.0",
-  "type": "module",
+ 
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -41,6 +41,9 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.3",
     "hardhat": "^2.18.3",
+    "@nomiclabs/hardhat-ethers": "^2.2.3",
+    "@nomiclabs/hardhat-waffle": "^2.0.6",
+    "ethereum-waffle": "^4.0.10",
     "tailwindcss": "^3.3.3",
     "vite": "^4.4.5",
     "vite-plugin-node-polyfills": "^0.14.1"

@@ -1,4 +1,5 @@
 const { expect } = require("chai");
+const { ethers } = require("hardhat"); // Import ethers for contract interactions
 
 describe("KYC Contract", function () {
   let KYC;

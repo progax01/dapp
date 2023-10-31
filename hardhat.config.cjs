@@ -1,5 +1,5 @@
-require("@nomicfoundation/hardhat-toolbox");
 
+require("@nomiclabs/hardhat-waffle")
 require('dotenv').config();
 
 const API_KEY = process.env.API_KEY;
@@ -11,7 +11,9 @@ module.exports = {
   networks: {
     sepolia: {
       url: `https://sepolia.infura.io/v3/${API_KEY}`,
-      accounts: [PRIVATE_KEY]
+      accounts: [PRIVATE_KEY],
+      chainId: 11155111,
+
     }
   }
 }

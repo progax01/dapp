@@ -1,3 +1,5 @@
+const { ethers } = require("hardhat");
+
 const main = async () => {
   const [deployer] = await ethers.getSigners();
 
