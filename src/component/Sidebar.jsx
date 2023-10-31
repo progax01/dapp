@@ -125,7 +125,7 @@ export default function MiniDrawer() {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap component="div">
-            NFT Market Place
+          KYC App
           </Typography>
           <div style={{ marginLeft: "auto" }}>
             {connectedAddress && (

@@ -31,8 +31,8 @@ console.log(contract);
     
   const newHash= await web3.eth.sendTransaction(result);
 
-console(newHash);
-console(newHash.transactionHash.toString());
+console.log(newHash);
+console.log(newHash.transactionHash.toString());
 
     return (newHash.transactionHash.toString()); // Return the transaction hash
   } catch (error) {

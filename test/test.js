@@ -1,48 +1,65 @@
 const { expect } = require("chai");
 const { ethers } = require("hardhat"); // Import ethers for contract interactions
-
 describe("KYC Contract", function () {
-  let KYC;
-  let kyc;
+  let kycContract;
   let owner;
   let user;
 
-  beforeEach(async () => {
-    KYC = await ethers.getContractFactory("KYC");
-    kyc = await KYC.deploy();
-    await kyc.deployed();
-
+  before(async () => {
     [owner, user] = await ethers.getSigners();
+
+    const KYC = await ethers.getContractFactory("KYC");
+    kycContract = await KYC.deploy();
+    await kycContract.deployed();
   });
 
-  it("Should deploy the KYC contract", async function () {
-    expect(kyc.address).to.not.equal(0);
+  it("Should set KYC data", async () => {
+    const fullName = "John Doe";
+    const email = "johndoe@example.com";
+    const phone = 1234567890;
+    const aadhar = 123456789012;
+    const location = "Test City";
+
+    await kycContract.setKYCData(
+      user.address,
+      fullName,
+      email,
+      phone,
+      aadhar,
+      location
+    );
+
+    const kycData = await kycContract.getKYCData(user.address);
+
+    expect(kycData._isVerified).to.equal(true);
+    expect(kycData._FullName).to.equal(fullName);
+    expect(kycData._Email).to.equal(email);
+    expect(kycData._Phone).to.equal(phone);
+    expect(kycData._Aadhar).to.equal(aadhar);
+    expect(kycData._Location).to.equal(location);
   });
 
-  it("Should set KYC data and verify it", async function () {
-    await kyc.connect(user).setKYCData("Anurag Sahu", "anurag@gmail.com", 1234567890, 123456789000, "India");
-    const isVerified = await kyc.verifyKYC(user.address);
+  it("Should verify KYC status", async () => {
+    const isVerified = await kycContract.verifyKYC(user.address);
     expect(isVerified).to.equal(true);
   });
 
-  it("Should get KYC data", async function () {
-    await kyc.connect(user).setKYCData("Anurag Sahu", "anurag@gmail.com", 9876543210, 987654321000, "India");
-    const [userAddress, isVerified, fullName, email, phone, aadhar, location] = await kyc.getKYCData(user.address);
-    expect(userAddress).to.equal(user.address);
-    expect(isVerified).to.equal(true);
-    expect(fullName).to.equal("Anurag Sahu");
-    expect(email).to.equal("anurag@gmail.com");
-    expect(phone).to.equal(9876543210);
-    expect(aadhar).to.equal(987654321000);
-    expect(location).to.equal("India");
-  });
+  it("Should not update KYC data for an already KYC-verified user", async () => {
+    const fullName = "Jane Smith";
+    const email = "janesmith@example.com";
+    const phone = 9876543210;
+    const aadhar = 987654321098;
+    const location = "New City";
 
-  it("Should not set KYC data if already verified", async function () {
-    await kyc.connect(user).setKYCData("Name", "Name@example.com", 1111111111, 1111111111, "My City");
-    try {
-      await kyc.connect(user).setKYCData("New Name", "newemail@example.com", 1234567890, 123456789000, "New City");
-    } catch (error) {
-      expect(error.message).to.contain("KYC already done");
-    }
+    await expect(
+      kycContract.setKYCData(
+        user.address,
+        fullName,
+        email,
+        phone,
+        aadhar,
+        location
+      )
+    ).to.be.revertedWith("KYC already Done use");
   });
 });

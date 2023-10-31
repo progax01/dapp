@@ -159,7 +159,7 @@ const MyForm = () => {
           autoClose: 8000,
         });
       } else {
-        console.error("Error:", error);
+        console.log("Error:", error);
         toast.error("Error submitting the form", { position: "top-right" });
       }
     }

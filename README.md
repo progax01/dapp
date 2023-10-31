@@ -1,8 +1,80 @@
-# React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# KYC Dapp
 
-Currently, two official plugins are available:
+Do your KYC once in blockchain and share your address with anyone, no need to do KYC again and again, use this blockchain KYC App.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+
+
+
+## Authors
+
+- [@progax01](https://github.com/progax01)
+
+
+## Features
+
+- Blockchain KYC
+- User Friendly 
+- Secure 
+- Cross platform
+
+
+## Installation
+
+Install KYC DAPP with npm
+
+```bash
+  npm install --force
+```
+  Run Project with npm  
+```bash
+  npm run dev
+```
+## Install Hardhat
+
+Install Hardhat
+
+```bash
+  npm install --save-dev hardhat
+```
+
+Install hardhat dependencies
+
+```bash
+  npm install --save-dev hardhat @nomicfounda/hardhat-toolbox --force
+```
+
+Install Dependencies for testing
+
+```bash
+npm install --save-dev @nomiclabs/hardhat-ethers ethers @nomiclabs/hardhat-waffle ethereum-waffle chai
+
+```
+
+
+
+
+## Compile Contract
+
+
+```bash
+ npx hardhat compile
+```
+
+## Running Tests with Hardhat
+
+To run tests, run the following command
+
+```bash
+ npx hardhat test
+```
+
+
+## Deployment
+
+To deploy this project run
+
+```bash
+  npx hardhat run scripts/deploy.js --network sepolia
+```
+
