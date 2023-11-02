@@ -5,9 +5,9 @@ import {nodePolyfills} from 'vite-plugin-node-polyfills';
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react(),  nodePolyfills()],
-  root: './',
-  build: {
-      outDir: 'dist',
-    },
-  publicDir: 'assets',
+  // root: './',
+  // build: {
+  //     outDir: 'dist',
+  //   },
+  // publicDir: 'assets',
 })

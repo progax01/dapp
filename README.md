@@ -3,6 +3,8 @@
 
 Do your KYC once in blockchain and share your address with anyone, no need to do KYC again and again, use this blockchain KYC App.
 
+# Deployed Link
+ - [KYC Dapp](https://cool-mochi-a8b5b7.netlify.app/)
 
 ## Authors
 
